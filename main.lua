@@ -12,18 +12,18 @@ function love.load()
  
 	platform.x = 0
 	platform.y = platform.height / 1.1
-	platform.img = love.graphics.newImage("ground-seamless-levels-game-earth-surfaces-with-land-grass-dried-soil-water-ice-lava_176411-1062.jpg")
+	platform.img = love.graphics.newImage("platform.jpg")
 
 	background.img = love.graphics.newImage("rain.jpg")
 
-	obstacle.x = 470
+	obstacle.x = 200
     obstacle.y = love.graphics.getHeight() / 1.2
 
-    obstacle.img = love.graphics.newImage("purple.png")
+    obstacle.img = love.graphics.newImage("golden-snitch.png")
 
 
     player.x = 0	-- gör att spelaren börjar längs till vänster
-    player.y = love.graphics.getHeight() / 1.1	-- så att spelaren står på samma höjd som p
+    player.y = love.graphics.getHeight() / 1.1	-- så att spelaren står på samma höjd som plattan
     
     player.speed = 180
 
