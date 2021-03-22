@@ -16,18 +16,18 @@ function love.load()
 
 	background.img = love.graphics.newImage("rain.jpg")
 
-	obstacle.x = 480
-    obstacle.y = love.graphics.getHeight() / 1.3
+	obstacle.x = 470
+    obstacle.y = love.graphics.getHeight() / 1.2
 
     obstacle.img = love.graphics.newImage("purple.png")
 
 
-    player.x = love.graphics.getWidth() / 1.1
-    player.y = love.graphics.getHeight() / 1.1
+    player.x = 0	-- gör att spelaren börjar längs till vänster
+    player.y = love.graphics.getHeight() / 1.1	-- så att spelaren står på samma höjd som p
     
     player.speed = 180
 
-    player.img = love.graphics.newImage("purple.png")
+    player.img = love.graphics.newImage("harry-potter.png")
 
     player.ground = player.y
  
@@ -69,7 +69,7 @@ function love.draw()
     love.graphics.draw(background.img, background.x, background.y, 0, 1, 2, 0, 100)
 	love.graphics.draw(platform.img, platform.x, platform.y, 0, 2, 1, 5)
  
-	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
+	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 70)
 
 	love.graphics.draw(obstacle.img, obstacle.x, obstacle.y, 0, 1, 1, 0, 32)
 
