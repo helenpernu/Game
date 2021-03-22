@@ -1,3 +1,5 @@
+background = {}
+
 platform = {}
 
 player = {}
@@ -9,16 +11,19 @@ function love.load()
 	platform.height = love.graphics.getHeight()
  
 	platform.x = 0
-	platform.y = platform.height / 1.4
+	platform.y = platform.height / 1.1
+	platform.img = love.graphics.newImage("ground-seamless-levels-game-earth-surfaces-with-land-grass-dried-soil-water-ice-lava_176411-1062.jpg")
+
+	background.img = love.graphics.newImage("rain.jpg")
 
 	obstacle.x = 480
-    obstacle.y = love.graphics.getHeight() / 1.4
+    obstacle.y = love.graphics.getHeight() / 1.3
 
     obstacle.img = love.graphics.newImage("purple.png")
 
 
-    player.x = love.graphics.getWidth() / 1.4
-    player.y = love.graphics.getHeight() / 1.4
+    player.x = love.graphics.getWidth() / 1.1
+    player.y = love.graphics.getHeight() / 1.1
     
     player.speed = 180
 
@@ -61,9 +66,8 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setBackgroundColor(0, 1, 1)
-	love.graphics.setColor(1, 0, 1)
-	love.graphics.rectangle("fill", platform.x, platform.y, platform.width, platform.height)
+    love.graphics.draw(background.img, background.x, background.y, 0, 1, 2, 0, 100)
+	love.graphics.draw(platform.img, platform.x, platform.y, 0, 2, 1, 5)
  
 	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 
