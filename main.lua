@@ -7,7 +7,7 @@ platform = {}
 
 dementors = {}
 
-self = {}
+harry = {}
 
 
 
@@ -28,20 +28,20 @@ function love.load()
 
 	background.img = love.graphics.newImage("rain.jpg")
 
-    self.x = love.graphics.getWidth() / 1.1
-    self.y = love.graphics.getHeight()
-    self.width = 25  -- player bredd
-    self.height = 25 -- player höjd
-    self.speed = 300 -- player hastighet
+    harry.x = love.graphics.getWidth() / 1.1
+    harry.y = love.graphics.getHeight()
+    harry.width = 25  -- player bredd
+    harry.height = 25 -- player höjd
+    harry.speed = 300 -- player hastighet
 
-	self.img = love.graphics.newImage("harry-potter.png")
+	harry.img = love.graphics.newImage("harry-potter.png")
 	
 
 end
 
 function dementors:collide()
     if checkCollision(self, dementors) then
-        self.speed = 0
+        dementors.speed = 0
     end
 end
 
@@ -50,32 +50,38 @@ function love.update(dt)
 
 	dementors.y = dementors.y + (dementors.speed * dt)
 
-	if(checkCollision(self, dementors)) then
-        isGameOver = true   -- boolean updateras
+	if(checkCollision(harry, dementors)) then
+        isGameOver = true 
     end
 
+	if(dementors.y > love.graphics.getHeight()) then
+		dementors.y = -100
+		dementors.x = math.random(50, love.graphics.getWidth() - 50)
+		dementors.speed = dementors.speed + 40
+		end
 
-	if self.y < 0 + 100 then 
-        self.y = 0 + 100 elseif
-        self.y + 100 > love.graphics.getHeight() -- boundaries upp och ner, så playern inte kan rymma kartan
-    then self.y = love.graphics.getHeight() - 100
+
+	if harry.y < 0 + 100 then 
+        harry.y = 0 + 100 elseif
+        harry.y + 100 > love.graphics.getHeight() 
+    then harry.y = love.graphics.getHeight() - 100
     end
 
-	if self.x < 0 + 0        -- fixade boundaries, hade delat self.height och self.width på 2 och det var problemet.
-    then self.x = 0 + 700 
-    elseif self.x + 0 > love.graphics.getWidth() -- boundaries höger och vänster, så playern inte kan rymma kartan
-    then self.x = love.graphics.getWidth() -700
+	if harry.x < 0 + 0        
+    then harry.x = 0 + 700 
+    elseif harry.x + 0 > love.graphics.getWidth() 
+    then harry.x = love.graphics.getWidth() -700
     end
 
 	
 	
     if love.keyboard.isDown("d") 
-    then self.x = self.x + self.speed * dt
+    then harry.x = harry.x + harry.speed * dt
     end
     
     
     if love.keyboard.isDown("a")
-    then self.x = self.x - self.speed * dt
+    then harry.x = harry.x - harry.speed * dt
     end
     
 
@@ -84,9 +90,11 @@ end
 function love.draw()
 	love.graphics.draw(background.img, background.x, background.y, 0, 1, 2, 0, 100)
 	love.graphics.draw(platform.img, platform.x, platform.y, 0, 2, 1, 5)
-	love.graphics.draw(self.img, self.x, self.y, self.height)
 
+	if isGameOver == false then
 	love.graphics.draw(dementors.img, dementors.x , dementors.y, dementors.height, dementors.width)
+	love.graphics.draw(harry.img, harry.x, harry.y, harry.height)
+	end
 
 
 	if(isGameOver) then 
@@ -100,11 +108,11 @@ function love.draw()
     
 end
  
-function checkCollision(self, dementors)
-    if self.x + self.width > dementors.x and self.x < dementors.x + dementors.width and self.y + self.height > dementors.y and self.y < dementors.y + dementors.height then
-        return true
-    else
-        return false
+function checkCollision(harry, dementors)
+    if harry.x + harry.width > dementors.x and harry.x < dementors.x + dementors.width and harry.y + harry.height > dementors.y and harry.y < dementors.y + dementors.height then
+         return true
+	else
+		return false
     end
 
 
