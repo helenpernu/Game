@@ -22,6 +22,7 @@ function love.load()
     dementors.height = 0.28
     dementors.speed = 210
 	dementors.img = love.graphics.newImage("dementorpixel.png")
+	dramaticSound = love.audio.newSource("dramaticSound.mp3", "static")
 
 	platform.width = love.graphics.getWidth()
 	platform.height = love.graphics.getHeight()
@@ -35,8 +36,10 @@ function love.load()
     goldensnitchScore.height = 0.087
     goldensnitchScore.speed = 200
 	goldensnitchScore.img = love.graphics.newImage("goldensnitch.png")
+	scoreSound = love.audio.newSource("score-sound.mp3", "static")
 
 	background.img = love.graphics.newImage("rain.jpg")
+	rainSounds = love.audio.newSource("rainsounds.wav", "static")
 
     harry.x = love.graphics.getWidth() / 1.1
     harry.y = love.graphics.getHeight()
@@ -68,12 +71,14 @@ end
 
 
 function love.update(dt)
+	love.audio.play(rainSounds)
 
 -- dementors
 	dementors.y = dementors.y + (dementors.speed * dt)
 
 	if(checkCollision(harry, dementors)) then
         isGameOver = true
+		love.audio.play(dramaticSound)
     	end
 
 	if(dementors.y > love.graphics.getHeight()) then
@@ -86,7 +91,8 @@ function love.update(dt)
 	goldensnitchScore.y = goldensnitchScore.y + (goldensnitchScore.speed * dt)
 
 	if(checkCollision(harry, goldensnitchScore)) then
-		score =  score + 150
+		score = score + 150
+		love.audio.play(scoreSound)
 
 		end
 	
@@ -150,7 +156,7 @@ function love.draw()
         love.graphics.setFont(font)
         local text = "OH NO! GAME OVER..."
         love.graphics.print(text, love.graphics.getWidth() / 2 - font:getWidth(text) / 2, love.graphics.getHeight() * (1 / 3))
-		love.graphics.print("Your score:" .. " " .. score, love.graphics.getWidth() / 1, love.graphics.getHeight() / 1, 0, 2)
+		love.graphics.print("Your score:" .. " " .. score, love.graphics.getWidth() / 2, love.graphics.getHeight() / 2, 0, 0.5)
         return
     end
  
