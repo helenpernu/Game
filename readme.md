@@ -1,8 +1,10 @@
 "The Invasion of the Dementors"
 
 Watch out for all the horrible Dementors, or else they will
-suck out all the joy and happiness from you!
+suck out all the joy and happiness from you and you die!
 
-Use "W" to jump, "A" to go left and "D" to go right.
+Catch the golden snitches which will earn you 150 points each.
 
-If you get hit by the Dementors 3 times, you die!
+"A" to go left and "D" to go right. 
+Note: if you go all the way to the left or to the right, you end
+up in the opposite direction, so you can run though the platform faster and easier!
